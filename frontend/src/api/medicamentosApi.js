@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:8080/api/medicamentos";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8080/api/medicamentos";
 
 export const getMedicamentos = async () => (await fetch(API_BASE)).json();
 export const getMedicamento = async (id) => (await fetch(`${API_BASE}/${id}`)).json();
