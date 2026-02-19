@@ -1,1 +1,71 @@
-@import "tailwindcss"; 
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --color-brand-primary: hsla(221, 83%, 53%, 1);
+  --color-brand-secondary: hsla(199, 89%, 48%, 1);
+  --color-brand-accent: hsla(160, 84%, 39%, 1);
+  --shadow-premium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+@layer base {
+
+  /* 
+     THE MASTER TRANSITION: 
+     This ensures every single element changes theme at the exact same speed.
+     We use a slightly faster 200ms for a snappy but smooth feel.
+  */
+  *,
+  ::before,
+  ::after {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-duration: 250ms !important;
+  }
+
+  body {
+    @apply antialiased text-slate-900 bg-slate-50 font-sans min-h-screen overflow-x-hidden;
+    margin: 0;
+  }
+
+  .dark body {
+    @apply text-slate-100 bg-slate-950;
+  }
+}
+
+@layer components {
+  .card-premium {
+    @apply bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-premium;
+    @apply dark:bg-slate-900 dark:border-slate-800 dark:shadow-none;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-brand-primary text-white rounded-lg font-medium hover:bg-blue-700 active:scale-95 flex items-center gap-2;
+  }
+
+  .btn-outline {
+    @apply px-4 py-2 border border-slate-200 text-slate-600 rounded-lg font-medium hover:bg-slate-50 active:scale-95 flex items-center gap-2;
+    @apply dark:border-slate-800 dark:text-slate-400 dark:hover:bg-slate-900;
+  }
+
+  .input-premium {
+    @apply w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary outline-none;
+    @apply dark:bg-slate-950 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-brand-primary/10;
+  }
+
+  .admin-table {
+    @apply w-full text-left border-collapse;
+  }
+
+  .admin-table th {
+    @apply px-6 py-4 bg-slate-50 font-semibold text-slate-500 text-sm uppercase tracking-wider border-b border-slate-100;
+    @apply dark:bg-slate-900 dark:text-slate-400 dark:border-slate-800;
+  }
+
+  .admin-table td {
+    @apply px-6 py-4 border-b border-slate-50 text-slate-700;
+    @apply dark:border-slate-800 dark:text-slate-300;
+  }
+}
