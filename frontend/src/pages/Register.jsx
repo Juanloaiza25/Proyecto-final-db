@@ -24,9 +24,12 @@ export default function Register({ onGoLogin }) {
     }
   };
 
+  const inputClass = "w-full bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-600/50 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary/50 transition";
+  const labelClass = "block text-sm font-medium text-slate-600 dark:text-slate-300 mb-2";
+
   const field = (id, label, type, icon, value, key, placeholder) => (
     <div>
-      <label className="block text-sm font-medium text-slate-300 mb-2">{label}</label>
+      <label className={labelClass}>{label}</label>
       <div className="relative">
         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">{icon}</span>
         <input
@@ -35,14 +38,14 @@ export default function Register({ onGoLogin }) {
           value={value}
           onChange={e => setForm({ ...form, [key]: e.target.value })}
           placeholder={placeholder}
-          className="w-full bg-slate-800/60 border border-slate-600/50 text-white placeholder-slate-500 rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary/50 transition"
+          className={inputClass}
         />
       </div>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-slate-100 via-slate-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center p-4 transition-colors duration-300">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-brand-primary/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-brand-primary/5 rounded-full blur-3xl" />
@@ -54,13 +57,13 @@ export default function Register({ onGoLogin }) {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-primary rounded-2xl shadow-2xl shadow-brand-primary/30 mb-4">
             <Activity size={32} className="text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Salud &amp; Vida</h1>
-          <p className="text-slate-400 mt-1 text-sm">Crear nueva cuenta</p>
+          <h1 className="text-3xl font-bold text-slate-800 dark:text-white tracking-tight">Salud &amp; Vida</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1 text-sm">Crear nueva cuenta</p>
         </div>
 
         {/* Card */}
-        <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 shadow-2xl">
-          <h2 className="text-xl font-bold text-white mb-6">Registro</h2>
+        <div className="bg-white dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 rounded-3xl p-8 shadow-xl dark:shadow-2xl transition-colors duration-300">
+          <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6">Registro</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Nombre y Apellido */}
@@ -74,7 +77,7 @@ export default function Register({ onGoLogin }) {
 
             {/* Password con toggle */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Contraseña *</label>
+              <label className={labelClass}>Contraseña *</label>
               <div className="relative">
                 <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
@@ -85,23 +88,23 @@ export default function Register({ onGoLogin }) {
                   placeholder="Mínimo 6 caracteres"
                   required
                   minLength={6}
-                  className="w-full bg-slate-800/60 border border-slate-600/50 text-white placeholder-slate-500 rounded-xl pl-11 pr-12 py-3 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary/50 transition"
+                  className={`${inputClass} pr-12`}
                 />
                 <button type="button" onClick={() => setShowPass(!showPass)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 cursor-pointer">
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
                   {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
             </div>
 
             {/* Rol info */}
-            <div className="bg-slate-800/40 rounded-xl px-4 py-3 text-xs text-slate-400 border border-slate-700/40">
-              📋 Al registrarte obtendrás rol de <span className="text-slate-300 font-medium">Usuario</span> — solo lectura del catálogo. Un administrador puede elevarte el rol.
+            <div className="bg-slate-50 dark:bg-slate-800/40 rounded-xl px-4 py-3 text-xs text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700/40">
+              📋 Al registrarte obtendrás rol de <span className="text-slate-700 dark:text-slate-300 font-medium">Usuario</span> — solo lectura del catálogo. Un administrador puede elevarte el rol.
             </div>
 
             {/* Error */}
             {error && (
-              <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl px-4 py-3 text-sm">
+              <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 text-red-500 dark:text-red-400 rounded-xl px-4 py-3 text-sm">
                 <AlertCircle size={16} className="shrink-0" />
                 {error}
               </div>
@@ -123,12 +126,12 @@ export default function Register({ onGoLogin }) {
           </form>
 
           <div className="flex items-center gap-3 my-6">
-            <div className="flex-1 h-px bg-slate-700/50" />
-            <span className="text-slate-500 text-xs">o</span>
-            <div className="flex-1 h-px bg-slate-700/50" />
+            <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700/50" />
+            <span className="text-slate-400 dark:text-slate-500 text-xs">o</span>
+            <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700/50" />
           </div>
 
-          <p className="text-center text-slate-400 text-sm">
+          <p className="text-center text-slate-500 dark:text-slate-400 text-sm">
             ¿Ya tienes cuenta?{" "}
             <button onClick={onGoLogin}
               className="text-brand-primary font-semibold hover:underline cursor-pointer">
