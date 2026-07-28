@@ -279,10 +279,11 @@ INSERT INTO medicamentos (id_medicamento, nombre_comercial, nombre_generico, id_
 (10,'Omeprazol MK','Omeprazol',4,1,2,'20 mg','Caja X 14 capsulas','Náuseas, dolor de cabeza, diarrea, dolor abdominal.','Hipersensibilidad al omeprazol o benzimidazoles; evitar en pacientes con sospecha de patología maligna gástrica.',true,'2025-11-17 05:24:02','2025-11-17 05:24:02');
 
 INSERT INTO rol (id_rol, nombre, descripcion) VALUES 
-(1,'ROLE_ADMIN','Administrador'),(2,'ROLE_MEDICO','Médico'),(3,'ROLE_FARMACIA','Farmacia');
+(1,'ROLE_ADMIN','Administrador del sistema'),(2,'ROLE_EMPLEADO','Empleado con acceso a CRUD medicamentos'),(3,'ROLE_USUARIO','Usuario con acceso de solo lectura');
 
+-- Password: admin123 (BCrypt hash)
 INSERT INTO usuario (id_usuario, username, email, password_hash, nombre, apellido, id_rol, is_active, created_at, updated_at) VALUES 
-(1,'admin','admin@svb.com','$2y$..hash..','Admin','SVB',1,true,'2025-11-16 20:41:11','2025-11-16 20:41:11');
+(1,'admin','admin@svb.com','$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy','Admin','SVB',1,true,'2025-11-16 20:41:11','2025-11-16 20:41:11');
 
 -- ==========================================
 -- Ensure Sequences Continue Correctly

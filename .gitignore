@@ -1,0 +1,5 @@
+# Oracle JDK local - no subir al repo
+oracleJdk-26/
+
+# Env files
+.env
